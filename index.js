@@ -8,18 +8,13 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// cocacola
-// i6gHIZYbjsCZ8oAW
+// console.log(process.env.DB_USER);
+// console.log(process.env.DB_PASS);
 
-console.log(process.env.DB_USER);
-console.log(process.env.DB_PASS);
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
-// const uri =
-//   'mongodb+srv://cocacola:<password>@atlascluster.2gfc1uj.mongodb.net/?retryWrites=true&w=majority';
 const uri =
-  'mongodb+srv://cocacola:i6gHIZYbjsCZ8oAW@atlascluster.2gfc1uj.mongodb.net/?retryWrites=true&w=majority';
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.an9sbnh.mongodb.net/?retryWrites=true&w=majority`;
+
+  console.log(uri);
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -29,8 +24,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
-
 
 async function run() {
   try {
@@ -43,10 +36,13 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
+
+
+
 
 
 app.get('/', (req, res) => {
