@@ -29,6 +29,13 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    app.post('/cocacola', async (req, res) => {
+      const newCocacola = req.body;
+      console.log(newCocacola);
+    })
+
+    
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 });
     console.log(
