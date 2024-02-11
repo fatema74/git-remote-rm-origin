@@ -24,6 +24,10 @@ const client = new MongoClient(uri, {
   },
 });
 
+
+
+
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -31,7 +35,7 @@ async function run() {
 
     const cocacolaCollection = client.db('cocacolaDB').collection('cocacola');
 
-    const userCollection = client.db('cocacolaDB').collection('user')
+    const userCollection = client.db('cocacolaDB').collection('user');
 
     app.get('/cocacola', async (req, res) => {
       const cursor = cocacolaCollection.find();
