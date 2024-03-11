@@ -37,14 +37,14 @@ async function run() {
 
     const userCollection = client.db('cocacolaDB').collection('user');
 
-    app.get('/cocacola', async (req, res) => {
+    app.get('/cocacola', async(req, res) => {
       const cursor = cocacolaCollection.find();
       const result = await cursor.toArray();
       res.send(result);
     })
 
 
-    app.get('/cocacola/:id', async (req, res) => {
+    app.get('/cocacola/:id', async(req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) }
       const result = await cocacolaCollection.findOne(query);
@@ -52,7 +52,7 @@ async function run() {
     })
 
 
-    app.post('/cocacola', async (req, res) => {
+    app.post('/cocacola', async(req, res) => {
       const newCocacola = req.body;
       console.log(newCocacola);
       const result = await cocacolaCollection.insertOne(newCocacola);
@@ -60,7 +60,7 @@ async function run() {
     })
 
 
-    app.put('/cocacola/:id', async (req, res) => {
+    app.put('/cocacola/:id', async(req, res) => {
       const id = req.params.id;
       const filter = {_id: new ObjectId(id)}
       const options = { upsert: true };
@@ -69,10 +69,6 @@ async function run() {
         $set: {
           name: updatedCocacola.name,
           quantity: updatedCocacola.quantity,
-          supplier: updatedCocacola.supplier,
-          taste: updatedCocacola.taste,
-          category: updatedCocacola.category,
-          details: updatedCocacola.details,
           photo: updatedCocacola.photo
         }
       }
@@ -80,7 +76,7 @@ async function run() {
       res.send(result);
     })
 
-    app.delete('/cocacola/:id', async (req, res) => {
+    app.delete('/cocacola/:id', async(req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) }
       const result = await cocacolaCollection.deleteOne(query);
@@ -88,20 +84,20 @@ async function run() {
     })
 
 
-    app.get('/user', async (req, res) => {
+    app.get('/user', async(req, res) => {
       const cursor = userCollection.find();
       const users = await cursor.toArray();
       res.send(users);
     })
 
-    app.post('/user', async (req, res) => {
+    app.post('/user', async(req, res) => {
       const user = req.body;
       console.log(user);
       const result = await userCollection.insertOne(user);
       res.send(result)
     })
 
-    app.patch('/user', async (req, res) => {
+    app.patch('/user', async(req, res) => {
       const user = req.body;
       const filter= {email: user.email}
       const updateDoc = {
@@ -113,7 +109,7 @@ async function run() {
       res.send(result)
     })
 
-    app.delete('/user/:id', async (req, res) => {
+    app.delete('/user/:id', async(req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await userCollection.deleteOne(query);
