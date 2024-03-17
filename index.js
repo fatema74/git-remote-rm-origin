@@ -41,7 +41,7 @@ const client = new MongoClient(uri, {
 // run().catch(console.dir);
 
 async function run() {
-  await client.connect();
+client.connect();
 
   const cocacolaCollection = client.db('cocacolaDB').collection('cocacola');
 
