@@ -98,11 +98,11 @@ client.connect();
     res.send(result);
   });
 
-  // app.get('/user', async (req, res) => {
-  //   const cursor = userCollection.find();
-  //   const users = await cursor.toArray();
-  //   res.send(users);
-  // });
+  app.get('/user', async (req, res) => {
+    const cursor = userCollection.find();
+    const users = await cursor.toArray();
+    res.send(users);
+  });
 
   app.post('/user', async (req, res) => {
     const user = req.body;
