@@ -70,15 +70,15 @@ client.connect((err) => {
     const options = { upsert: true };
     const updatedCocacola = req.body;
     const cocacola = {
-      $set: {
-        name: updatedCocacola.name,
-        brand: updatedCocacola.brand,
-        type: updatedCocacola.type,
-        price: updatedCocacola.price,
-        rating: updatedCocacola.rating,
-        massege: updatedCocacola.massege,
-        photo: updatedCocacola.photo,
-      },
+      // $set: {
+      //   name: updatedCocacola.name,
+      //   brand: updatedCocacola.brand,
+      //   type: updatedCocacola.type,
+      //   price: updatedCocacola.price,
+      //   rating: updatedCocacola.rating,
+      //   massege: updatedCocacola.massege,
+      //   photo: updatedCocacola.photo
+      // },
     };
     const result = await cocacolaCollection.updateOne(
       filter,
